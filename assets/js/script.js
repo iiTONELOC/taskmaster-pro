@@ -141,12 +141,20 @@ $(".list-group").on("click", "span", function() {
   // swap out elements
   $(this).replaceWith(dateInput);
 
+  //datepicker
+  dateInput.datepicker({
+    minDate:1,
+    onClose: function(){
+      $(this).trigger("change");
+    }
+  });
+
   // automatically focus on new element
   dateInput.trigger("focus");
 });
 
 // value of due date was changed
-$(".list-group").on("blur", "input[type='text']", function() {
+$(".list-group").on("change", "input[type='text']", function() {
   // get current text
   var date = $(this)
     .val()
@@ -245,6 +253,11 @@ $("#trash").droppable({
     console.log("out");
   }
   
+});
+
+//datepicker 
+$("#modalDueDate").datepicker({
+  minDate:1
 });
 
 // remove all tasks
